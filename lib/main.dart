@@ -34,6 +34,30 @@ class MainPageState extends State<MainPage> {
       appBar: AppBar(
         title: Text(''),
       ),
+      body:ListView(
+        children: [
+          Container(
+            height: 50,
+            child: Center(
+                child: ElevatedButton(
+                    child: Text("基础例子"),
+                    onPressed: () {
+                      // Get.snackbar("Hi", "Message");
+                      // Get.defaultDialog(title: "I am a dialog");
+                      // Get.to(Other());
+                    })),
+          ),
+          Container(
+            height: 50,
+            child: Center(
+                child: ElevatedButton(
+                    child: Text("UI框架"),
+                    onPressed: () {
+                      Get.toNamed(RouteConfig.frame);
+                    })),
+          ),
+        ],
+      )
     );
   }
   @override
