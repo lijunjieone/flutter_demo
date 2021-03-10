@@ -11,142 +11,9 @@ class SmallFrame extends StatefulWidget {
 }
 
 class SmallFrameState extends State<SmallFrame> {
-  var card = SizedBox(
-    //限定高度
-    height: 250.0,
-    //添加Card组件
-    child: Card(
-      //垂直布局
-      child: Column(
-        children: <Widget>[
-          ListTile(
-            //标题
-            title: Text(
-              '深圳市南山区深南大道',
-              style: TextStyle(fontWeight: FontWeight.w300),
-            ),
-            //子标题
-            subtitle: Text('XX有限公司'),
-            //左侧图标
-            leading: Icon(
-              Icons.home,
-              color: Colors.lightBlue,
-            ),
-          ),
-          //分隔线
-          Divider(),
-          ListTile(
-            title: Text(
-              '深圳市罗湖区沿海大道',
-              style: TextStyle(fontWeight: FontWeight.w300),
-            ),
-            subtitle: Text('XX培训机构'),
-            leading: Icon(
-              Icons.school,
-              color: Colors.lightBlue,
-            ),
-          ),
-          Divider(),
-        ],
-      ),
-    ),
-  );
 
-  var flat = Container(
-    height: 30,
-    child: Center(
-      child: FlatButton(
-        onPressed: () {
-          // Scaffold.of(context).showSnackBar(SnackBar(
-          //   content: Text("你点击了FloatingActionButton"),
-          // ));
-        },
-        child: Text(
-          'FlatButton',
-          style: TextStyle(fontSize: 24.0),
-        ),
-      ),
-    ),
-  );
 
-  String _selectedValue;
 
-  PopupMenuButton _popMenu() {
-    return PopupMenuButton<String>(
-      itemBuilder: (context) => _getPopupMenu(context),
-      onSelected: (String value) {
-        print('onSelected');
-        _selectValueChange(value);
-      },
-      onCanceled: () {
-        print('onCanceled');
-      },
-//      child: RaisedButton(onPressed: (){},child: Text('选择'),),
-      icon: Icon(Icons.shopping_basket),
-    );
-  }
-
-  _selectValueChange(String value) {
-    setState(() {
-      _selectedValue = value;
-    });
-  }
-
-  _showMenu(BuildContext context) {
-    final RenderBox button = context.findRenderObject();
-    final RenderBox overlay = Overlay.of(context).context.findRenderObject();
-    final RelativeRect position = RelativeRect.fromRect(
-      Rect.fromPoints(
-        button.localToGlobal(Offset(0, 0), ancestor: overlay),
-        button.localToGlobal(button.size.bottomRight(Offset.zero),
-            ancestor: overlay),
-      ),
-      Offset.zero & overlay.size,
-    );
-    var pop = _popMenu();
-    showMenu<String>(
-      context: context,
-      items: pop.itemBuilder(context),
-      position: position,
-    ).then<void>((String newValue) {
-      if (!mounted) return null;
-      if (newValue == null) {
-        if (pop.onCanceled != null) pop.onCanceled();
-        return null;
-      }
-      if (pop.onSelected != null) pop.onSelected(newValue);
-    });
-  }
-
-  _getPopupMenu(BuildContext context) {
-    return <PopupMenuEntry<String>>[
-      PopupMenuItem<String>(
-        value: '语文',
-        child: Text('语文'),
-      ),
-      PopupMenuItem<String>(
-        value: '数学',
-        child: Text('数学'),
-      ),
-      PopupMenuItem<String>(
-        value: '英语',
-        child: Text('英语'),
-      ),
-      PopupMenuItem<String>(
-        value: '生物',
-        child: Text('生物'),
-      ),
-      PopupMenuItem<String>(
-        value: '化学',
-        child: Text('化学'),
-      ),
-    ];
-  }
-
-  final List<Tab> myTabs = <Tab>[
-    Tab(text: '选项卡一'),
-    Tab(text: '选项卡二'),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -220,10 +87,6 @@ class SmallFrameState extends State<SmallFrame> {
               leading: new CircleAvatar(child: Icon(Icons.wifi)),
               title: Text('免流量特权'),
               onTap: () {
-                // Scaffold.of(context).showSnackBar(SnackBar(
-                //   content: Text("你点击了FloatingActionButton"),
-                // ));
-                _showMenu(context);
               },
             ),
           ],
@@ -241,21 +104,7 @@ class SmallFrameState extends State<SmallFrame> {
                 child: Center(
                   child: _widgetOptions.elementAt(_selectedIndex), //居中显示某一个文本
                 )),
-            Container(
-              child: card,
-            ),
-            flat,
-            Container(
-              height: 40,
-              child: Center(
-                  child: IconButton(
-                    icon: Icon(Icons.label, size: 48),
-                    onPressed: () {
-                      print("show Menu");
-                      _showMenu(context);
-                    },
-                  )),
-            ),
+
             Container(
               height: 40,
               child: Center(
