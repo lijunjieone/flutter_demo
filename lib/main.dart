@@ -3,6 +3,7 @@ import 'package:flutter_demo/strings.dart';
 import 'package:get/get.dart';
 
 import 'config/routes.dart';
+import 'demo/ui_demo.dart';
 
 void main() {
   runApp(MyApp());
@@ -42,9 +43,7 @@ class MainPageState extends State<MainPage> {
                 child: ElevatedButton(
                     child: Text("基础例子"),
                     onPressed: () {
-                      // Get.snackbar("Hi", "Message");
-                      // Get.defaultDialog(title: "I am a dialog");
-                      // Get.to(Other());
+                      Get.to(UiDemo());
                     })),
           ),
           Container(
