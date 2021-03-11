@@ -55,6 +55,15 @@ class MainPageState extends State<MainPage> {
                       Get.toNamed(RouteConfig.frame);
                     })),
           ),
+          Container(
+            height: 50,
+            child: Center(
+                child: ElevatedButton(
+                    child: Text("GetX"),
+                    onPressed: () {
+                      Get.toNamed(RouteConfig.getXTest);
+                    })),
+          ),
         ],
       )
     );
